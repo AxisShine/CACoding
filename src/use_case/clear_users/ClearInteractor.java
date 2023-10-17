@@ -1,43 +1,35 @@
 package use_case.clear_users;
 
-// TODO Complete me
+// TODO Complete me seems good
 
 import entity.User;
 import entity.UserFactory;
-import use_case.clear_users.ClearInputData;
-import use_case.clear_users.ClearOutputBoundary;
-import use_case.clear_users.ClearOutputData;
-import use_case.clear_users.ClearUserDataAccessInterface;
 
 import java.time.LocalDateTime;
 
 public class ClearInteractor implements ClearInputBoundary{
-    final ClearUserDataAccessInterface userDataAccessObject;
+    final ClearUserDataAccessInterface clearUserDataAccessObject;
     final ClearOutputBoundary userPresenter;
     final UserFactory userFactory;
 
-    public SignupInteractor(SignupUserDataAccessInterface signupDataAccessInterface,
-                            SignupOutputBoundary signupOutputBoundary,
+    public SignupInteractor(ClearUserDataAccessInterface clearUserDataAccessObject,
+                            ClearOutputBoundary clearOutputBoundary,
                             UserFactory userFactory) {
-        this.userDataAccessObject = signupDataAccessInterface;
-        this.userPresenter = signupOutputBoundary;
+        this.clearUserDataAccessObject = clearUserDataAccessObject;
+        this.userPresenter = clearOutputBoundary;
         this.userFactory = userFactory;
     }
 
+    public ClearInteractor() {
+    }
+
     @Override
-    public void execute(SignupInputData signupInputData) {
-        if (userDataAccessObject.existsByName(signupInputData.getUsername())) {
-            userPresenter.prepareFailView("User already exists.");
-        } else if (!signupInputData.getPassword().equals(signupInputData.getRepeatPassword())) {
-            userPresenter.prepareFailView("Passwords don't match.");
-        } else {
+    public void execute(ClearInputData clearInputData) {
+        LocalDateTime now = LocalDateTime.now();
 
-            LocalDateTime now = LocalDateTime.now();
-            User user = userFactory.create(signupInputData.getUsername(), signupInputData.getPassword(), now);
-            userDataAccessObject.save(user);
+        String[] usernames = clearUserDataAccessObject.clear();
 
-            SignupOutputData signupOutputData = new SignupOutputData(user.getName(), now.toString(), false);
-            userPresenter.prepareSuccessView(signupOutputData);
-        }
+        ClearOutputData clearOutputData = new ClearOutputData(usernames, now.toString(), false);
+        userPresenter.prepareSuccessView(clearOutputData);
     }
 }
