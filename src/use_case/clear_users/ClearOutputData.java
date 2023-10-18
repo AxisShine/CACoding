@@ -2,20 +2,22 @@ package use_case.clear_users;
 
 // TODO Complete me seems good
 
+import java.util.Set;
+
 public class ClearOutputData {
-    private String[] usernames;
+    private Set usernames;
 
     private String creationTime;
 
     private boolean useCaseFailed;
 
-    public ClearOutputData(String[] usernames, String creationTime, boolean useCaseFailed) {
+    public ClearOutputData(Set usernames, String creationTime, boolean useCaseFailed) {
         this.usernames = usernames;
         this.creationTime = creationTime;
         this.useCaseFailed = useCaseFailed;
     }
 
-    public String[] getUsernames() {
+    public Set getUsernames() {
         return usernames;
     }
 

@@ -4,6 +4,8 @@ package use_case.clear_users;
 
 import entity.User;
 
+import java.util.Set;
+
 public interface ClearUserDataAccessInterface {
-    void clear();
+    Set clear();
 }

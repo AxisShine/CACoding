@@ -6,6 +6,7 @@ import entity.User;
 import entity.UserFactory;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 public class ClearInteractor implements ClearInputBoundary{
     final ClearUserDataAccessInterface clearUserDataAccessObject;
@@ -27,7 +28,7 @@ public class ClearInteractor implements ClearInputBoundary{
     public void execute(ClearInputData clearInputData) {
         LocalDateTime now = LocalDateTime.now();
 
-        String[] usernames = clearUserDataAccessObject.clear();
+        Set usernames = clearUserDataAccessObject.clear();
 
         ClearOutputData clearOutputData = new ClearOutputData(usernames, now.toString(), false);
         userPresenter.prepareSuccessView(clearOutputData);
