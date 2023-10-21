@@ -8,20 +8,18 @@ import entity.UserFactory;
 import java.time.LocalDateTime;
 import java.util.Set;
 
+
 public class ClearInteractor implements ClearInputBoundary{
     final ClearUserDataAccessInterface clearUserDataAccessObject;
     final ClearOutputBoundary userPresenter;
     final UserFactory userFactory;
 
-    public SignupInteractor(ClearUserDataAccessInterface clearUserDataAccessObject,
+    public ClearInteractor(ClearUserDataAccessInterface clearUserDataAccessObject,
                             ClearOutputBoundary clearOutputBoundary,
                             UserFactory userFactory) {
         this.clearUserDataAccessObject = clearUserDataAccessObject;
         this.userPresenter = clearOutputBoundary;
         this.userFactory = userFactory;
-    }
-
-    public ClearInteractor() {
     }
 
     @Override

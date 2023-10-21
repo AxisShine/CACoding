@@ -94,19 +94,12 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     }
 
     private void clearUsers() {
+        accounts.clear();
         BufferedWriter writer;
         try {
             writer = new BufferedWriter(new FileWriter(csvFile));
-            writer.delete(all lol);
+            writer.write(String.join(",", headers.keySet()));
             writer.newLine();
-
-            for (User user : accounts.values()) {
-                String line = String.format("%s,%s,%s",
-                        user.getName(), user.getPassword(), user.getCreationTime());
-                writer.write(line);
-                writer.newLine();
-            }
-
             writer.close();
 
         } catch (IOException e) {

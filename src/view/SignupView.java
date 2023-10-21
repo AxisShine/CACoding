@@ -90,10 +90,7 @@ public class SignupView extends JPanel implements ActionListener, PropertyChange
                         if (e.getSource().equals(clear)) {
                             ClearState currentState = clearViewModel.getState();
 
-                            clearController.execute(
-                                    currentState.getUsername(),
-                                    currentState.getPassword()
-                            );
+                            clearController.execute();
                         }
                     }
                 }
